@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <time.h>
-
 
 void bubbleSort(int arr[], int n){
 
@@ -32,18 +30,13 @@ int main() {
         scanf("%d", &arr[i]);
     }
 
-    clock_t start = clock();
-
     bubbleSort(arr, n);
-
-    clock_t end = clock();
-    double timeTaken = (double)(end - start) / CLOCKS_PER_SEC;
    
     printf("Sorted array : ");
     for(int i=0; i<n; i++){
         printf("%d ", arr[i]);
     }   
-    printf("Time taken by Bubble Sort = %f seconds\n", timeTaken);
+   
     return 0;
 
 }
