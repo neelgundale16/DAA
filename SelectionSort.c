@@ -18,7 +18,7 @@ void selectionSort(int a[], int n) {
 
 int main() {
     int n, i;
-    int a[100];
+    int a[1000];
 
     printf("Enter number of elements: ");
     scanf("%d", &n);
