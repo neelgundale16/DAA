@@ -20,7 +20,7 @@ void bubbleSort(int arr[], int n){
 }
 int main() {
 
-    int arr[100], n;
+    int arr[1000], n;
 
     printf("Enter the size of the array : ");
     scanf("%d", &n);
@@ -38,5 +38,4 @@ int main() {
     }   
    
     return 0;
-
 }
