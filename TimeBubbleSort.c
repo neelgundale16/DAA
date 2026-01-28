@@ -1,30 +1,5 @@
 #include <stdio.h>
-#include <windows.h>
-
-struct timeval {
-    long tv_sec;
-    long tv_usec;
-};
-
-int gettimeofday(struct timeval* tp, void* tzp) {
-    FILETIME ft;
-    unsigned __int64 tmpres = 0;
-    const unsigned __int64 EPOCH = 116444736000000000ULL;
-
-    GetSystemTimeAsFileTime(&ft);
-
-    tmpres |= ft.dwHighDateTime;
-    tmpres <<= 32;
-    tmpres |= ft.dwLowDateTime;
-
-    tmpres -= EPOCH;
-    tmpres /= 10;
-
-    tp->tv_sec = (long)(tmpres / 1000000UL);
-    tp->tv_usec = (long)(tmpres % 1000000UL);
-
-    return 0;
-}
+#include <time.h>
 
 void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
@@ -44,25 +19,20 @@ int main() {
     printf("Enter the size of the array: ");
     scanf("%d", &n);
 
-    printf("Enter the elements:\n");
+    printf("Enter the elements: ");
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    struct timeval tv;
-    long t1, t2;
-
-    gettimeofday(&tv, NULL);
-    t1 = tv.tv_usec;
+    clock_t start = clock();
 
     bubbleSort(arr, n);
 
-    gettimeofday(&tv, NULL);
-    t2 = tv.tv_usec;
+    clock_t end = clock();
 
-    double timeTaken = (t2 - t1) / 1000000.0;
+    double timeTaken = (double)(end - start) / CLOCKS_PER_SEC;
 
-    printf("\nSorted array: ");
+    printf("Sorted array: ");
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
